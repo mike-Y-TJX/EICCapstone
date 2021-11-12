@@ -15,15 +15,15 @@ module.exports = function (db) {
 	router
 		.route('/:id')
 		.get((req, res, next) => {
+			let found=false
 			products.products.forEach((product) => { 
-				let found=false
 				if (product.product_id === String(req.params.id)) {
 					res.send(product);
 					found=true
 				}
 			});
 			if (!found) {		
-			res.status(404).send(); 
+				res.status(404).send("not found"); 
 			}
 		});
 	return router;

@@ -32,8 +32,8 @@ module.exports =  function (db) {
 	router
 		.route('/:id')
 		.get((req, res, next) => {
+			let found=false
 			customers.customers.forEach((customer) => { 
-				let found=false
 				if (customer.customer_id === Number(req.params.id)) {
 					res.send(customer);
 					found=true
@@ -41,7 +41,7 @@ module.exports =  function (db) {
 				
 			});
 			if (!found) {		
-			res.status(404).send(); 
+				res.status(404).send("not found"); 
 			}
 		})
 		.put((req, res) => {
